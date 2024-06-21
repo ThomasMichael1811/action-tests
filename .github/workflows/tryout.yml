@@ -1,4 +1,5 @@
-name: "push example"
+name: "push_example"
+
 on: 
   workflow_dispatch:
 

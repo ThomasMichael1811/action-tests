@@ -2,6 +2,11 @@ name: "push_example"
 
 on: 
   workflow_dispatch:
+    inputs:
+      name: 
+        required: true
+      home: 
+        required: true
 
   repository_dispatch:
     types:
@@ -18,9 +23,11 @@ jobs:
         name: do some action
         env:
             CUSTOMER_FOLDER: 'data'
+            MYHOME: ${{ github.event.inputs.home }}
         run: | 
           ls
           cd $CUSTOMER_FOLDER
+          echo "hier home ${{ github.event.inputs.home }} ${{ github.event.inputs.name }}  home 2 $MYHOME"
           ls
           date +%s > customerdata.txt
       - name: Commit report
